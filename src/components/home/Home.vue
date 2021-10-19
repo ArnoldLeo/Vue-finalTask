@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <dashboard/>
+    <navBar/>
     <h1>PRODUCTS</h1>
     <div class="container-main">
       <div
@@ -20,6 +22,8 @@
 </template>
 
 <script>
+import dashboard from '../dashboard/Dashboard.vue'
+import navBar from '../home/Nav.vue'
 export default {
   name: "main",
   data() {
@@ -27,7 +31,10 @@ export default {
       apiData: [],
     };
   },
-
+components:{
+  dashboard,
+  navBar
+},
   methods: {
     getDetails(user) {
       this.$router.push({

@@ -1,24 +1,41 @@
 <template>
   <div class="login--main">
     <h1>Login Page</h1>
-     <div class="name">
+    <div class="name">
       <p>First Name</p>
-      <input v-model="firstName" type="text" placeholder="Enter your First Name" autofocus />
+      <input
+        v-model="firstName"
+        type="text"
+        placeholder="Enter your First Name"
+        autofocus
+      />
     </div>
-     <div class="name">
+    <div class="name">
       <p>Last Name</p>
-      <input v-model="lastName" type="text" placeholder="Enter your Last Name" />
+      <input
+        v-model="lastName"
+        type="text"
+        placeholder="Enter your Last Name"
+      />
     </div>
     <div class="address">
-      <p>Address:</p>
-      <input v-model="area" type="text" placeholder="Enter your Area and Street" />
+      <p name="address">Address:</p>
+      <input
+        v-model="area"
+        type="text"
+        placeholder="Enter your Area and Street"
+      />
       <input v-model="district" type="text" placeholder="City/District/Town" />
       <input v-model="state" type="text" placeholder="Enter your State" />
       <input v-model="pincode" type="number" placeholder="Enter your Pincode" />
     </div>
     <div class="conatctNumber">
       <p>Mobile Number:</p>
-      <input v-model="contact" type="number" placeholder="Enter Mobile Number" />
+      <input
+        v-model="contact"
+        type="number"
+        placeholder="Enter Mobile Number"
+      />
     </div>
     <div class="email--main">
       <p>Email:</p>
@@ -27,7 +44,11 @@
     </div>
     <div class="passwd--main">
       <p>Password:</p>
-      <input v-model="password" type="password" placeholder="Enter your password" />
+      <input
+        v-model="password"
+        type="password"
+        placeholder="Enter your password"
+      />
       <p class="errMsg" v-if="passwordErrMsg">
         Password length should be between 8 to 16 characters
       </p>
@@ -42,18 +63,18 @@ export default {
   name: "login",
   data() {
     return {
-      // details:[],
+      details: [],
       email: "",
       password: "",
       emailErrMsg: true,
       passwordErrMsg: true,
-      firstName:"",
-      lastName:"",
-      area:"",
-      district:"",
-      state:"",
-      contact:"",
-      pincode:""
+      firstName: "",
+      lastName: "",
+      area: "",
+      district: "",
+      state: "",
+      contact: "",
+      pincode: "",
     };
   },
   watch: {
@@ -68,34 +89,30 @@ export default {
         this.passwordErrMsg = true;
       }
     },
-    // firstName(value){
-    //   this.details.push({firstName:value});
-    // },
-    // lastName(value){
-    //   this.details.push({lastName:value});
-    // },
-    // area(value){
-    //   this.details.push({Address:value});
-    // },
-    // district(value){
-    //   this.details.push({Address:value});
-    // },
-    // state(value){
-    //   this.details.push({Address:value});
-    // },
-    // pincode(value){
-    //   this.details.push({Address:value});
-    // }
   },
 
   methods: {
     loginFunc() {
-      console.log("login");
+      localStorage.setItem("address", JSON.stringify([]));
+      const details = {"fname":this.firstName,"lname": this.lastName,"phone": this.contact,"mail":this.email};
+      // const area=this.area
+      // const district=this.district
+
       if (!this.passwordErrMsg && !this.emailErrMsg) {
-        // localStorage.setItem("userData", this.email);
-        localStorage.setItem("userDetails", JSON.stringify({email:this.email},{fname:this.firstName}));
-        console.log("details",this.details)
-        this.$router.push({ name: "home" });
+        const address = JSON.parse(localStorage.getItem("address"));
+        address.push({
+          area: this.area,
+          district: this.district,
+          state: this.state,
+          pincode: this.pincode,
+        });
+        localStorage.setItem("address", JSON.stringify(address));
+        this.details.push(details);
+        // console.log("login",this.details);
+        localStorage.setItem("userData", JSON.stringify(this.details));
+        // localStorage.setItem("userDetails", JSON.stringify());
+        console.log("details", this.details);
+        this.$router.push({ name: "main" });
       } else {
         alert("login failed");
       }
@@ -114,28 +131,29 @@ export default {
   /* transform: translateY(20%); */
   height: 120vh;
 }
-h1{
+h1 {
   color: blue;
 }
-.name{
-      display: inline-block;
-    margin: 10px;
+.name {
+  display: inline-block;
+  margin: 10px;
 }
 p {
   padding: 10px;
   font-weight: 700;
 }
-input,textarea {
+input,
+textarea {
   text-align: center;
   border: 0;
   border-bottom: 1px solid black;
   outline: none;
   margin-bottom: 10px;
 }
-.address{
+.address {
   display: inline-block;
 }
-.address>input{
+.address > input {
   margin: 10px;
 }
 .login--btn {
@@ -154,17 +172,17 @@ input,textarea {
 .google--icon {
   margin-top: 10px;
 }
-::placeholder{
+::placeholder {
   text-align: center;
 }
-@media screen and (min-width:600px){
+@media screen and (min-width: 600px) {
   .login--main {
-  /* text-align: center; */
-  /* box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%); */
-  padding: 40px;
-  margin: auto 25%;
-  /* transform: translateY(20%); */
-  /* height: 150vh; */
-}
+    /* text-align: center; */
+    /* box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%); */
+    padding: 40px;
+    margin: auto 25%;
+    /* transform: translateY(20%); */
+    /* height: 150vh; */
+  }
 }
 </style>

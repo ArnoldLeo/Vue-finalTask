@@ -7,12 +7,13 @@
 <script>
 export default {
   name: "App",
-  // created() {
-  //   let userData = localStorage.getItem("userData");
-  //   if (!userData) {
-  //     this.$router.push({ name: "login" });
-  //   }
-  // },
+  created() {
+    // localStorage.setItem("cart", JSON.stringify([]));
+    let userData = localStorage.getItem("userData");
+    if (!userData) {
+      this.$router.push({ name: "login" });
+    }
+  },
 };
 </script>
 

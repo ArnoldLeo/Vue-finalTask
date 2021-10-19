@@ -5,7 +5,7 @@ const routes=[
     { path: '/:pathMatch(.*)*', name: 'Home', component: Home },
     {
         path:'/home',
-        name:'home',
+        name:'main',
         component:Home
     },
     {
@@ -18,6 +18,16 @@ const routes=[
         name:'login',
         component:()=>import(/*webpackChunkName="Login"*/"@/components/login/Login.vue")
     },
+    {
+        path:'/cart',
+        name:'Cart',
+        component:()=>import(/*webpackChunkName="Login"*/"@/components/cart/Cart.vue")
+    },
+    { 
+        path: "/checkout", 
+        name:'checkout',
+        component: () => import(/*webpackChunkName="Details"*/"@/components/cart/checkout.vue") 
+    }
     
 ]
 const router = createRouter({
@@ -26,8 +36,8 @@ const router = createRouter({
     routes, // short for `routes: routes`
   })
 
-// router.beforeEach((to, from, next) => {
-//     if (to.name == 'login' && localStorage.getItem('userData')) next({ name: 'home' })
-//     else next()
-// })
+router.beforeEach((to, from, next) => {
+    if (to.name == 'login' && localStorage.getItem('userData')) next({ name: 'main' })
+    else next()
+})
   export default router;
