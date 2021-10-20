@@ -52,17 +52,17 @@ export default {
   },
 
   async created() {
-    this.apiData1= this.$route.params.details
-      ? JSON.parse(this.$route.params.details)
-      : null;
-    console.log("userdetails||", this.apiData1);
-    // this.individualDetails = this.$route.params.id;
-    // console.log("user", this.individualDetails);
-    // const response = await fetch(
-    //   `https://fakestoreapi.com/products/${this.individualDetails}`
-    // );
-    // const result = await response.json();
-    // this.apiData1 = result;
+    // this.apiData1= this.$route.params.details
+    //   ? JSON.parse(this.$route.params.details)
+    //   : null;
+    // console.log("userdetails||", this.apiData1);
+    this.individualDetails = this.$route.params.id;
+    console.log("user", this.individualDetails);
+    const response = await fetch(
+      `https://fakestoreapi.com/products/${this.individualDetails}`
+    );
+    const result = await response.json();
+    this.apiData1 = result;
     this.apiData1.quantity = 1;
     console.log("apiData1", this.apiData1);
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>CART</h1>
-    <span><button class="backbtn" @click="this.$router.push({name:'main'})" >Home</button></span>
+    <span><button class="backbtn" @click="this.$router.push({name:'home'})" >Home</button></span>
     <div v-for="(c, index) of cart" :key="c.id">
       <div class="card">
           <div>
