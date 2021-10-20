@@ -72,13 +72,8 @@ export default {
       if (!localStorage.getItem("cart")) {
         localStorage.setItem("cart", JSON.stringify([]));
       }
-      else{
-        this.cart = JSON.parse(localStorage.getItem("cart")); 
-      }
-
-      console.log(itemId);
       const cartItem = this.cart.find(({id}) => id == itemId);
-      console.log(Boolean(cartItem));
+      // console.log(Boolean(cartItem));
       return Boolean(cartItem);
     },
 
