@@ -112,7 +112,7 @@ export default {
         localStorage.setItem("userData", JSON.stringify(this.details));
         // localStorage.setItem("userDetails", JSON.stringify());
         console.log("details", this.details);
-        this.$router.push({ name: "main" });
+        this.$router.push({ name: 'home' });
       } else {
         alert("login failed");
       }

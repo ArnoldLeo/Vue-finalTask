@@ -38,6 +38,8 @@ export default {
   data() {
     return {
       cart: [],
+      totalAmount:"",
+      totalQuants:"",
     };
   },
   computed: {
@@ -74,9 +76,12 @@ export default {
           if (updateType == "subtract") {
             if (this.cart[i].quantity != 0) {
               this.cart[i].quantity--;
+              
             }
           } else if (updateType == "add") {
             this.cart[i].quantity++;
+            // localStorage.setItem("cart",JSON.stringify(this.cart[i]))
+            // console.log(this.cart[i])
           } else {
             this.cart[i].quantity = 0;
           }
@@ -91,13 +96,22 @@ export default {
       console.log();
     },
     checkout() {
-      if(this.cart!="")
+      if(this.cart==""){
+        alert("Cart is Empty!!");
+      }else{
+         localStorage.setItem("cart",JSON.stringify(this.cart))
       this.$router.push({ name: "checkout" });
+     
+      }
     },
   },
   beforeMount() {
       this.getCart();
     },
+    // onUnmounted(){
+    //   console.log("unmounted"),
+    //   localStorage.setItem("cart",JSON.stringify(this.cart))
+    // }
 };
 </script>
 

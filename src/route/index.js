@@ -2,10 +2,10 @@ import { createRouter,createWebHistory} from "vue-router";
 import Home from '../components/home/Home.vue'
 
 const routes=[
-    { path: '/:pathMatch(.*)*', name: 'Home', component: Home },
+    { path: '/:pathMatch(.*)*', name: 'home', component: Home },
     {
         path:'/home',
-        name:'main',
+        name:'home',
         component:Home
     },
     {
@@ -37,7 +37,7 @@ const router = createRouter({
   })
 
 router.beforeEach((to, from, next) => {
-    if (to.name == 'login' && localStorage.getItem('userData')) next({ name: 'main' })
+    if (to.name == 'login' && localStorage.getItem('userData')) next({ name: 'home' })
     else next()
 })
   export default router;

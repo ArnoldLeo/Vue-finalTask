@@ -25,7 +25,7 @@
 import dashboard from '../dashboard/Dashboard.vue'
 import navBar from '../home/Nav.vue'
 export default {
-  name: "main",
+  name: "home",
   data() {
     return {
       apiData: [],
